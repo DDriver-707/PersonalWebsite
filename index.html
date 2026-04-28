@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desmond Driver | CS, IT, and Product</title>
+  <style>
+    :root {
+      --ucsc-blue: #003c6c;
+      --ucsc-gold: #f1b521;
+      --deep-blue: #071827;
+      --cream: #f7f1df;
+      --ink: #111111;
+      --muted: #d7dce2;
+      --card: rgba(7, 24, 39, 0.88);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      background: var(--cream);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 8%;
+      border-bottom: 2px solid rgba(241, 181, 33, 0.55);
+      background: rgba(7, 24, 39, 0.58);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      font-size: 0.95rem;
+      color: #ffffff;
+    }
+
+    .logo span {
+      color: var(--ucsc-gold);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      font-size: 0.9rem;
+      color: #edf2f7;
+    }
+
+    nav a {
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    nav a:hover {
+      color: var(--ucsc-gold);
+      border-color: var(--ucsc-gold);
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 42px;
+      padding: 72px 8%;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .eyebrow {
+      color: var(--ucsc-gold);
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(3.4rem, 8vw, 7.4rem);
+      line-height: 0.88;
+      letter-spacing: -5px;
+      max-width: 820px;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .gold-line {
+      width: 88px;
+      height: 6px;
+      background: var(--ucsc-gold);
+      margin: 26px 0 0;
+    }
+
+    .subtitle {
+      margin-top: 26px;
+      max-width: 680px;
+      color: var(--ink);
+      font-size: 1.08rem;
+    }
+
+    .subtitle strong {
+      color: var(--ucsc-gold);
+    }
+
+    .buttons {
+      margin-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 13px 18px;
+      border: 2px solid var(--ucsc-gold);
+      background: var(--ucsc-gold);
+      color: var(--deep-blue);
+      font-weight: 900;
+      border-radius: 0;
+      letter-spacing: 0.3px;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .dark .btn.secondary,
+    .featured-project .btn.secondary,
+    .contact-strip .btn.secondary {
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    section a { color: var(--ucsc-blue); font-weight: 700; }
+    section a:hover { text-decoration: underline; }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .profile-card {
+      background: var(--card);
+      border: 2px solid rgba(241, 181, 33, 0.72);
+      padding: 20px;
+      max-width: 430px;
+      margin-left: auto;
+      box-shadow: 18px 18px 0 rgba(241, 181, 33, 0.22);
+    }
+
+    .profile-card img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 30%;
+      border: 2px solid rgba(255,255,255,0.18);
+      filter: saturate(1.04) contrast(1.05);
+    }
+
+    .card-meta {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+      color: #e8edf2;
+      font-size: 0.95rem;
+    }
+
+    .quick-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .quick-tags span {
+      border: 1px solid rgba(241, 181, 33, 0.8);
+      color: var(--ucsc-gold);
+      padding: 4px 8px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    section {
+      padding: 78px 8%;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    section.dark {
+      background: var(--deep-blue);
+      color: #ffffff;
+    }
+
+    .section-kicker {
+      color: var(--ucsc-blue);
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      margin-bottom: 12px;
+    }
+
+    .dark .section-kicker {
+      color: var(--ucsc-gold);
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .tile {
+      border: 2px solid rgba(0, 60, 108, 0.28);
+      padding: 24px;
+      min-height: 235px;
+      background: #fffaf0;
+      box-shadow: 8px 8px 0 rgba(0, 60, 108, 0.08);
+    }
+
+    .dark .tile {
+      background: #0c2236;
+      border-color: rgba(241, 181, 33, 0.42);
+      box-shadow: 8px 8px 0 rgba(241, 181, 33, 0.13);
+    }
+
+    .tile h3 {
+      font-size: 1.18rem;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .tile p {
+      color: #2c2c2c;
+    }
+
+    .dark .tile p {
+      color: #d9e2ea;
+    }
+
+    .status {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 4px 8px;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid currentColor;
+      color: var(--ucsc-blue);
+      font-weight: 800;
+    }
+
+    .dark .status {
+      color: var(--ucsc-gold);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 46px;
+      align-items: start;
+    }
+
+    .about p {
+      font-size: 1.08rem;
+      margin-bottom: 16px;
+      color: #2b2b2b;
+    }
+
+    .mini-list {
+      margin-top: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-list div {
+      border-left: 5px solid var(--ucsc-gold);
+      background: #ffffff;
+      padding: 12px 14px;
+    }
+
+    .featured-project {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: stretch;
+      border: 2px solid rgba(241, 181, 33, 0.65);
+      background: #0c2236;
+      color: #ffffff;
+      padding: 28px;
+      box-shadow: 14px 14px 0 rgba(0, 60, 108, 0.18);
+    }
+
+    .featured-project .project-label {
+      color: var(--ucsc-gold);
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      font-size: 0.76rem;
+      margin-bottom: 10px;
+    }
+
+    .featured-project h3 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .featured-project p {
+      color: #e4ebf2;
+      margin-bottom: 16px;
+    }
+
+    .featured-project ul {
+      margin-left: 18px;
+      color: #e4ebf2;
+    }
+
+    .featured-project li {
+      margin-bottom: 8px;
+    }
+
+    .featured-project .buttons {
+      margin-top: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .featured-project {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-strip {
+      background: var(--ucsc-blue);
+      color: #fff;
+      padding: 44px 8%;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      border-top: 6px solid var(--ucsc-gold);
+    }
+
+    .contact-strip h2 {
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    footer {
+      padding: 24px 8%;
+      background: #04111d;
+      color: #c9d2dc;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+
+      .hero,
+      .about,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .profile-card {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="logo">DESMOND <span>DRIVER</span></div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">UC Santa Cruz • CS + TIM • IT Support</div>
+        <h1>Building useful systems for real people.</h1>
+        <div class="gold-line"></div>
+        <p class="subtitle">
+          I’m Desmond Driver, a UCSC Computer Science student focused on <strong>IT support, implementation, business systems, and product thinking</strong>. I like work where I can talk to users, fix problems, and help turn scattered ideas into something clear and useful.
+        </p>
+        <div class="buttons">
+          <a class="btn" href="mailto:dtdriver@ucsc.edu">Email Me</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/desmond-driver-09b6b829b/">LinkedIn</a>
+          <a class="btn secondary" href="Final%20Desmond_Driver_IT_Resume.pdf">Resume</a>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <img src="IMG_8969.png" alt="Portrait of Desmond Driver" onerror="this.onerror=null; this.src='profile.jpg';" />
+        <div class="card-meta">
+          <p><strong>Current lane:</strong> IT support, business systems, implementation, and product operations.</p>
+          <p><strong>Based in:</strong> Santa Cruz, California</p>
+          <div class="quick-tags">
+            <span>UCSC</span>
+            <span>Adobe</span>
+            <span>GetVirtual</span>
+            <span>Library IT</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <section id="about">
+    <div class="about">
+      <div>
+        <div class="section-kicker">About</div>
+        <h2 class="section-title">A mix of tech, people, and execution.</h2>
+      </div>
+      <div>
+        <p>
+          I’m studying Computer Science with a Technology Information Management minor at UC Santa Cruz. I’m not only interested in writing code. I’m interested in how technology actually gets used, supported, explained, and improved.
+        </p>
+        <p>
+          That is why my experience sits across IT and circulation support, Adobe student onboarding, client website planning, and startup style product work. I enjoy being the person who can understand the technical side and still communicate it clearly to the people using it.
+        </p>
+        <div class="mini-list">
+          <div><strong>What I bring:</strong> troubleshooting, communication, documentation, and follow through.</div>
+          <div><strong>What I’m looking for:</strong> IT, implementation, product operations, or business systems roles.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="dark">
+    <div class="section-kicker">Experience</div>
+    <h2 class="section-title">Work I’m doing right now</h2>
+    <div class="grid">
+      <div class="tile">
+        <span class="status">Current</span>
+        <h3>GetVirtual Business Assistance Intern</h3>
+        <p>Working with a real client on online presence, website direction, content planning, social media, SEO, and digital business setup. The focus is helping turn a rough need into a clean plan the client can actually use.</p>
+      </div>
+      <div class="tile">
+        <span class="status">Current</span>
+        <h3>Adobe Student Ambassador</h3>
+        <p>Helping students get comfortable with Creative Cloud tools through onboarding, peer support, and workshops. A big part of the role is making software feel less confusing and more useful.</p>
+      </div>
+      <div class="tile">
+        <span class="status">Current</span>
+        <h3>Library IT and Circulation Support</h3>
+        <p>Supporting patrons and staff with devices, accounts, circulation systems, room booking tools, inventory workflows, and daily tech issues across a busy campus environment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-kicker">Featured Project</div>
+    <h2 class="section-title">A project that shows how I think</h2>
+    <div class="featured-project">
+      <div>
+        <div class="project-label">Built • Web Audio • React</div>
+        <h3>Automated Beat Maker</h3>
+        <p>
+          A browser based music tool I built to connect my interest in music with automation and web development. It gave me practice with timing, state, audio playback, and making an interface that is simple enough for someone to actually use.
+        </p>
+        <div class="buttons">
+          <a class="btn" href="https://automated-beats.vercel.app" target="_blank">View Live</a>
+          <a class="btn secondary" href="https://github.com/DDriver-707/AutomatedBeats" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div>
+        <p><strong>Why it matters:</strong> it shows the kind of work I enjoy. Taking a creative idea, breaking it into technical pieces, and turning it into something interactive.</p>
+        <ul>
+          <li>Built with JavaScript, TypeScript, React, and the Web Audio API.</li>
+          <li>Worked through timing, playback, and browser compatibility issues.</li>
+          <li>Connects product thinking, music, and technical implementation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-kicker" style="margin-top:70px;">More Work</div>
+    <h2 class="section-title">Learning and in progress</h2>
+    <div class="grid">
+      <div class="tile">
+        <span class="status">WIP</span>
+        <h3>IdeaFlow AI</h3>
+        <p>A tool I’m building to help entrepreneurs turn rough ideas into structured plans. The goal is to move from vague thoughts to clearer problem statements, MVP scope, decision criteria, risks, and next steps.</p>
+      </div>
+      <div class="tile">
+        <span class="status">In Progress</span>
+        <h3>Google IT Support Certificate</h3>
+        <p>Strengthening my foundation in troubleshooting, networking, operating systems, system administration, and support workflows so I can keep building toward IT and implementation roles.</p>
+      </div>
+      <div class="tile">
+        <span class="status">Built</span>
+        <h3>Automated Beat Maker</h3>
+        <p>A browser based music project using JavaScript, TypeScript, React, and the Web Audio API. It connects my interest in music with automation, interface design, and web development.</p>
+        <p style="margin-top:10px;"><a href="https://automated-beats.vercel.app" target="_blank" style="color: var(--ucsc-blue); font-weight:700;">View Live</a> · <a href="https://github.com/DDriver-707/AutomatedBeats" target="_blank" style="color: var(--ucsc-blue); font-weight:700;">GitHub</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-strip">
+    <h2>Let’s connect</h2>
+    <div class="buttons">
+      <a class="btn" href="mailto:dtdriver@ucsc.edu">dtdriver@ucsc.edu</a>
+      <a class="btn secondary" href="https://www.linkedin.com/in/desmond-driver-09b6b829b/">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Desmond Driver. Built for GitHub Pages.
+  </footer>
+</body>
+</html>
